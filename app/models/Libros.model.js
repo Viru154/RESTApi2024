@@ -1,31 +1,37 @@
 
 module.exports = (sequelize, Sequelize) => {
-	const Song = sequelize.define('song', {	
+	const Libros = sequelize.define('libros', {	
 	  id: {
 			type: Sequelize.INTEGER,
 			autoIncrement: true,
 			primaryKey: true
     },
-	  name: {
-			type: Sequelize.STRING
+	  cod_libro: {
+			type: Sequelize.INTEGER
 	  },
-	  description: {
+	  nom_libro: {
 		type: Sequelize.STRING
   	},
-	  artist: {
+	  editorial: {
 			type: Sequelize.STRING
   	},
-	  duration: {
+	  autor: {
+		type: Sequelize.STRING
+	},
+	genero: {
+		type: Sequelize.STRING
+  	},
+	  pais_aut: {
+		type: Sequelize.STRING
+  	},
+	  num_pag: {
 		type: Sequelize.INTEGER
 	},
-	extension: {
-		type: Sequelize.STRING
-  	},
-	  album: {
-		type: Sequelize.STRING
-  	},
-	  year: {
+	  ano_edi: {
 		type: Sequelize.INTEGER
+	},
+	  precio_lib: {
+		type: Sequelize.DOUBLE
 	},
     copyrightby: {
       type: Sequelize.STRING,
@@ -33,5 +39,5 @@ module.exports = (sequelize, Sequelize) => {
     }
 	});
 	
-	return Song;
+	return Libros;
 }

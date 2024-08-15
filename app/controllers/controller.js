@@ -1,27 +1,29 @@
 
 
 const db = require('../config/db.config.js');
-const Song = db.song;
+const Libros = db.Libros;
 
 exports.create = (req, res) => {
-    let song = {};
+    let Libros = {};
 
     try{
-        // Building song object from upoading request's body
-        song.name = req.body.name;
-        song.description = req.body.description;
-        song.artist = req.body.artist;
-        song.duration = req.body.duration;
-        song.extension = req.body.extension;
-        song.album = req.body.album;
-        song.year = req.body.year;
+        // Building Libros object from upoading request's body
+        Libros.cod_libro = req.body.cod_libro;
+        Libros.nom_ibro = req.body.nom_libro;
+        Libros.editoral = req.body.editorial;
+        Libros.autor = req.body.autor;
+        Libros.genero = req.body.genero;
+        Libros.pais_aut = req.body.pais_aut;
+        Libros.num_pag = req.body.num_pag;
+        Libros.ano_edi = req.body.ano_edi
+        Libros.precio_lib = req.body.precio_lib
     
         // Save to MySQL database
-        song.create(song).then(result => {    
+        Libros.create(Libros).then(result => {    
             // send uploading message to client
             res.status(200).json({
                 message: "Subido exitosamente a la ID = " + result.id,
-                Song: result,
+                Libros: result,
             });
         });
     }catch(error){
@@ -31,7 +33,7 @@ exports.create = (req, res) => {
         });
     }
 }
-
+/*
 exports.retrieveAllSong = (req, res) => {
   // find all Customer information from 
   Song.findAll()
@@ -128,50 +130,6 @@ exports.pagination = (req, res) => {
   }    
 }
 
-/* exports.pagingfilteringsorting = (req, res) => {
-  try{
-    let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let age = parseInt(req.query.age);
-  
-    const offset = page ? page * limit : 0;
-
-    console.log("offset = " + offset);
-  
-    Customer.findAndCountAll({
-                                attributes: ['id', 'name', 'description', 'artist', 'duration', 'extension', 'album', 'year', 'copyrightby'],
-                                where: {age: age}, 
-                                order: [
-                                  ['firstname', 'ASC'],
-                                  ['lastname', 'DESC']
-                                ],
-                                limit: limit, 
-                                offset:offset 
-                              })
-      .then(data => {
-        const totalPages = Math.ceil(data.count / limit);
-        const response = {
-          message: "Pagination Filtering Sorting request is completed! Query parameters: page = " + page + ", limit = " + limit + ", age = " + age,
-          data: {
-              "copyrightby": "UmgAntigua",
-              "totalItems": data.count,
-              "totalPages": totalPages,
-              "limit": limit,
-              "age-filtering": age,
-              "currentPageNumber": page + 1,
-              "currentPageSize": data.rows.length,
-              "customers": data.rows
-          }
-        };
-        res.send(response);
-      });  
-  }catch(error) {
-    res.status(500).send({
-      message: "Error -> Can NOT complete a paging request!",
-      error: error.message,
-    });
-  }      
-} */ 
 
 exports.updateById = async (req, res) => {
     try{
@@ -243,3 +201,4 @@ exports.deleteById = async (req, res) => {
         });
     }
 }
+    */
